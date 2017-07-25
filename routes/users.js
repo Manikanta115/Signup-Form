@@ -16,15 +16,16 @@ router.post('/', function (req, res, next) {
 
     // validate form data (it is always good to validate at server side)
 
-    if (data.name && data.email && data.crpsd && data.mobile && data.dob && data.gender) {
+    if (data.name && data.email && data.psd1 && data.psd2 && data.mobile && data.dob && data.gender) {
         // valid form data
 
         // crate an instance to UserModel (mongoose)
 
-        var reg = new UserModel({
+        var reg = new RegModel({
             name: data.name,
             email: data.email,
-            crpsd: data.crpsd,
+            password: data.psd1,
+            password: data.psd2,
             mobile: data.mobile,
             dob: data.dob,
             gender: data.gender
@@ -64,7 +65,7 @@ router.post('/', function (req, res, next) {
 
 // Define User Schema
 
-var regSchema = new Schema({
+var RegSchema = new Schema({
 
     name: {
         type: String,
@@ -110,6 +111,6 @@ var regSchema = new Schema({
 });
 
 // Crate User Model by Using User Schema
-var regModel = mongoose.model('reg', regSchema);
+var RegModel = mongoose.model('Reg', RegSchema);
 
 module.exports = router;

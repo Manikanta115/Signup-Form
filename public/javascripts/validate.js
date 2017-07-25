@@ -36,7 +36,7 @@
         // you can still use this keyword in place of $scope.
 
         // an empty user object
-        $scope.user = {
+        $scope.reg = {
             gender: 'Male'
         };
 
@@ -51,23 +51,23 @@
             // make an AJAX (POST) request to server and send user data as POST body.
 
             $scope.statusContext = "making request";
-            $scope.status = "Saving contact details...";
+            $scope.status = "Saving user details...";
 
-            $http.post("/api/users", $scope.user).then(function (res) {
+            $http.post("/api/users", $scope.reg).then(function (res) {
 
                 //    executes this callback function when server responded with success code.
 
                 // reset user back to initial state
-                $scope.user = {
+                $scope.reg = {
                     gender: 'Male'
                 };
 
                 // reset form data
-                $scope.userForm.$setPristine();
-                $scope.userForm.$setUntouched();
+                $scope.regForm.$setPristine();
+                $scope.regForm.$setUntouched();
 
                 $scope.statusContext = "success";
-                $scope.status = "Contact details saved successfully.";
+                $scope.status = "User registered successfully.";
 
             }, function (errRes) {
 

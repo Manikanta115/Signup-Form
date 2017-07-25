@@ -24,17 +24,17 @@ html(lang='en', ng-app='signup')
                 input#inputEmail.form-control(type='email', name='email', ng-model='reg.email', placeholder='enter email', required)
                 p.help-block(ng-show='regForm.email.$invalid && !regForm.email.$pristine') Enter a valid email.
                 
-              .form-group(ng-class="{ 'has-error' : regForm.crpsd.$invalid && !regForm.crpsd.$pristine }")
+              .form-group(ng-class="{ 'has-error' : regForm.psd1.$invalid && !regForm.psd1.$pristine }")
                 label(for='inputPassword').lhead Create Password :
-                input#inputPassword.form-control(type='password', name='crpsd', ng-model='reg.crpsd', ng-minlength='3', placeholder='create your password', required)
-                p.help-block(ng-show='regForm.crpsd.$error.minlength') Password is too short.
-                p.help-block(ng-show='regForm.crpsd.$error.maxlength') Password is too long.
+                input#inputPassword.form-control(type='password', name='psd1', ng-model='reg.psd1', ng-minlength='3', placeholder='create your password', required)
+                p.help-block(ng-show='regForm.psd1.$error.minlength') Password is too short.
+                p.help-block(ng-show='regForm.psd1.$error.maxlength') Password is too long.
                 
-              .form-group(ng-class="{ 'has-error' : regForm.copsd.$invalid && !regForm.copsd.$pristine }")
+              .form-group(ng-class="{ 'has-error' : regForm.psd2.$invalid && !regForm.psd2.$pristine }")
                 label(for='inputCpassword').lhead Confirm Password :
-                input#inputCpassword.form-control(type='password', name='copsd', ng-model='reg.copsd', ng-minlength='3', placeholder='confirm your password', required)
-                p.help-block(ng-show='regForm.copsd.$error.minlength') Password is too short.
-                p.help-block(ng-show='regForm.copsd.$error.maxlength') Password is too long.
+                input#inputCpassword.form-control(type='password', name='psd2', ng-model='reg.psd2', ng-minlength='3', placeholder='confirm your password', required)
+                p.help-block(ng-show='regForm.psd2.$error.minlength') Password is too short.
+                p.help-block(ng-show='regForm.psd2.$error.maxlength') Password is too long.
                 
               .form-group(ng-class="{ 'has-error' : regForm.mobile.$invalid && !regForm.mobile.$pristine }")
                 label(for='inputMobile').lhead Mobile Number :
@@ -52,9 +52,9 @@ html(lang='en', ng-app='signup')
                     select.form-control(name='gender', ng-model='reg.gender', required)
                       option Male
                       option Female
-              button.btn.btn-primary.col-xs-12(type='submit', ng-disabled='regForm.$invalid') REGISTER
-        .alert(role='alert', ng-show="status", ng-class="{'alert-success': statusContext === 'success', 'alert-danger': statusContext === 'error', 'alert-info': statusContext === 'making request'}")
-        |   {{ status }}
+              button.btn.btn-primary.col-xs-12(type='submit', ng-disabled='regForm.$invalid') REGISTER 
+              br
+            .alert(role='alert', ng-show='status', ng-class="{'alert-success': statusContext === 'success', 'alert-danger': statusContext === 'error', 'alert-info': statusContext === 'making request'}")   {{ status }}
         .col-md-4
     script(src='javascripts/angular.min.js')
     script(src='javascripts/validate.js')
