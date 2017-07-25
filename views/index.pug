@@ -1,0 +1,60 @@
+doctype html
+html(lang='en', ng-app='signup')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Register
+    link(rel='stylesheet', type='text/css', href='stylesheets/style.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+  body
+    .overlay
+        .col-md-4
+        .container-fluid(ng-controller='regController')
+          .form.col-md-4
+            form(name='regForm', ng-submit='regForm.$valid && addUser()', novalidate)
+              center
+                img.reg-img(src='./images/register.png')
+              .form-group(ng-class="{ 'has-error' : regForm.name.$invalid && !regForm.name.$pristine }")
+                label(for='inputFullName').lhead Full Name :
+                input#inputFullName.form-control(type='text', name='name', ng-model='reg.name', placeholder='enter fullname', required)
+                p.help-block(ng-show='regForm.name.$invalid && !regForm.name.$pristine') Your name is required.
+                
+              .form-group(ng-class="{ 'has-error' : regForm.email.$invalid && !regForm.email.$pristine }")
+                label(for='inputEmail').lhead Email ID :
+                input#inputEmail.form-control(type='email', name='email', ng-model='reg.email', placeholder='enter email', required)
+                p.help-block(ng-show='regForm.email.$invalid && !regForm.email.$pristine') Enter a valid email.
+                
+              .form-group(ng-class="{ 'has-error' : regForm.crpsd.$invalid && !regForm.crpsd.$pristine }")
+                label(for='inputPassword').lhead Create Password :
+                input#inputPassword.form-control(type='password', name='crpsd', ng-model='reg.crpsd', ng-minlength='3', placeholder='create your password', required)
+                p.help-block(ng-show='regForm.crpsd.$error.minlength') Password is too short.
+                p.help-block(ng-show='regForm.crpsd.$error.maxlength') Password is too long.
+                
+              .form-group(ng-class="{ 'has-error' : regForm.copsd.$invalid && !regForm.copsd.$pristine }")
+                label(for='inputCpassword').lhead Confirm Password :
+                input#inputCpassword.form-control(type='password', name='copsd', ng-model='reg.copsd', ng-minlength='3', placeholder='confirm your password', required)
+                p.help-block(ng-show='regForm.copsd.$error.minlength') Password is too short.
+                p.help-block(ng-show='regForm.copsd.$error.maxlength') Password is too long.
+                
+              .form-group(ng-class="{ 'has-error' : regForm.mobile.$invalid && !regForm.mobile.$pristine }")
+                label(for='inputMobile').lhead Mobile Number :
+                input#inputMobile.form-control(type='tel', name='mobile', ng-model='reg.mobile', ng-minlength='10', placeholder='enter mobile number', required)
+                p.help-block(ng-show='regForm.mobile.$invalid && !regForm.mobile.$pristine') Enter a valid 10-digit mobile number.
+                
+              .row
+                .col-xs-12.col-sm-6.col-md-6
+                  .form-group(ng-class="{ 'has-error' : regForm.dob.$invalid && !regForm.dob.$pristine }")
+                    label(for='inputDOB').lhead Date of Birth :
+                    input#inputDOB.form-control(type='date', name='dob', ng-model='reg.dob', required)
+                .col-xs-12.col-sm-6.col-md-6
+                  .form-group(ng-class="{ 'has-error' : regForm.gender.$invalid && !regForm.gender.$pristine }")
+                    label(for='inputGender').lhead Gender :
+                    select.form-control(name='gender', ng-model='reg.gender', required)
+                      option Male
+                      option Female
+              button.btn.btn-primary.col-xs-12(type='submit', ng-disabled='regForm.$invalid') REGISTER
+        .alert(role='alert', ng-show="status", ng-class="{'alert-success': statusContext === 'success', 'alert-danger': statusContext === 'error', 'alert-info': statusContext === 'making request'}")
+        |   {{ status }}
+        .col-md-4
+    script(src='javascripts/angular.min.js')
+    script(src='javascripts/validate.js')
